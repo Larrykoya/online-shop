@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shop All-Contact Us</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="top"></div>
+    <img
+      src="./images/grocery-store-displays.jpg"
+      alt=""
+      width="100%"
+      height="150px"
+    />
+    <a href="index.html"
+      ><div id="site_title">
+        <p class="headers">Shop All</p>
+        <img
+          src="./images/external-shopping-cart-supermarket-photo3ideastudio-lineal-photo3ideastudio.png"
+          alt=""
+        /></div
+    ></a>
+    <ul>
+      <li class="nav"><a href="index.html">HOME</a></li>
+      <li class="nav"><a href="items.html">ITEMS</a></li>
+      <li class="nav"><a href="cart.html">CART</a></li>
+      <li class="nav"><a href="contact.html">CONTACT</a></li>
+    </ul>
+    <p>Please tell us how to serve you better:</p>
+    <form id="form" action="" onsubmit="contactFeedBack()">
+      <span>Gender:</span>
+      <input type="radio" id="male" name="gender" value="MALE" required />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="FEMALE" required />
+      <label for="female">Female</label> <br />
+      <br />
+      <label for="name">First Name: </label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+      <br />
+      <label for="last_name">Last Name: </label>
+      <input
+        type="text"
+        id="last_name"
+        placeholder="Enter your last name"
+        required
+      />
+      <br />
+      <label for="name">Email: </label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter@youremail.com"
+        required
+      />
+      <br />
+      <label for="comment">comment: </label>
+      <textarea
+        id="comment"
+        name="comment"
+        rows="4"
+        cols="30"
+        required
+      ></textarea>
+      <br />
+
+      <button>SUBMIT</button>
+    </form>
+    <h2>Telephone:</h2>
+    <p>+1(423)7456781</p>
+    <h2>Email:</h2>
+    <p>Info@ShopAllStores.com</p>
+    <h2>Mailing Address:</h2>
+    <p>
+      1845 Piedmont Ave, Lenox Park NE Ste 500 Atlanta, GA 30324 Morningside,
+      US.
+    </p>
+    <h3>You can also visit any of our Stores</h3>
+    <h2>About Us</h2>
+    <p class="">
+      At <span class="store_name">Shop All</span>, we add greater value to our
+      customers by helping them make better buying decisions in an environment
+      that encourages constant interactions and respect.
+
+      <span class="store_name">Shop All</span> is a select assortment mass
+      grocery retail chain established to address the grocery shopping concerns
+      of our valuable customers and to make shopping a pleasurable experience
+      for you.
+    </p>
+    <a href="#top"><button>back to top</button></a>
+  </body>
+</html>
