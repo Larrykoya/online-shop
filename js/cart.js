@@ -18,7 +18,7 @@ onload = (event) => {
     </span>
           `;
   });
-  cartContainer.innerHTML = cartItems;
+  cartContainer.innerHTML = cartItems.join("");
   let total = cart.reduce((accumulator, object) => {
     return accumulator + object.quantity * object.price;
   }, 0);

@@ -176,5 +176,5 @@ onload = (event) => {
         `;
   });
 
-  productContainer.innerHTML = productToDisplay;
+  productContainer.innerHTML = productToDisplay.join("");
 };
