@@ -139,7 +139,6 @@ let cart = [];
 function addToCart(event) {
   alert("added to cart");
   let id = Number(event.target.id);
-  console.log("my id", id);
   let index = products.findIndex((product) => product.id === id);
   if (index > -1) {
     let product = products[index];
