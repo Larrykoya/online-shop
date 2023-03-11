@@ -3,10 +3,8 @@
   <head>
     <title>Shop All-Cart</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="/script.js"></script>
   </head>
   <body>
-    <div id="top"></div>
     <img
       src="./images/grocery-store-displays.jpg"
       alt=""
@@ -27,22 +25,13 @@
       <li class="nav"><a href="cart">CART</a></li>
       <li class="nav"><a href="contact">CONTACT</a></li>
     </ul>
-    <h2 class="headers" style="margin-left: 15px">Shopping Cart</h2>
-    <section id="cart">
-      <div id="itemsCart">Shopping Cart is Empty...</div>
-      <hr />
-      <div>
-        <span style="color: #e63946" class="data" id="total"></span>
-      </div>
-      <div>
-        <div style="color: #e63946" id="delivery"></div>
-      </div>
-    </section>
-    <p>Proceed To Payment:</p>
-    <button onclick="checkOut()">Check Out</button>
-
-    <button onclick="cancelCheckout()">Empty Cart</button><br />
-    <a href="#top"><button style="margin-top: 20px">Back to Top</button></a>
+    <h1 class="headers" style="padding-top: 15px; color: #1d3557">
+      Checkout Successful
+    </h1>
+    <script>
+      onload = (event) => {
+        localStorage.clear();
+      };
+    </script>
   </body>
-  <script src="cart.js"></script>
 </html>

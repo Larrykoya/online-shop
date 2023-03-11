@@ -12,9 +12,7 @@ onload = (event) => {
     quantity: ${cartItem.quantity}<br/>
     subtotal: ${subtotal}<br/><br/>
     <button disabled >Added To Cart</button><br><br/>
-    <select name="property" id="property">
-        <option>${cartItem.property}</option>
-        </select>
+    
     </span>
           `;
   });
@@ -29,3 +27,27 @@ onload = (event) => {
     deliveryFee.innerHTML = `Delivery is free.`;
   }
 };
+
+function checkOut() {
+  fetch("http://localhost:8080/stripe/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cart),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      window.location.href = data.url;
+    })
+    .catch((err) => console.log(err));
+}
+function cancelCheckout() {
+  if (cart) {
+    localStorage.clear();
+    location.reload();
+    alert("Cart Emptied!!!");
+  }
+}
