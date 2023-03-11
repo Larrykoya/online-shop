@@ -1,14 +1,14 @@
 function checkOut() {
-  let response = window
-    .prompt("Do you accept the total calculation?")
-    .toUpperCase();
-  if (response == "YES") {
-    alert("Thank you for shopping with us!!!");
-    localStorage.clear();
-    location.reload();
-  } else {
-    alert("Application withdrawn!!!");
-  }
+  // let response = window
+  //   .prompt("Do you accept the total calculation?")
+  //   .toUpperCase();
+  // if (response == "YES") {
+  alert("Thank you for shopping with us!!!");
+  localStorage.clear();
+  location.reload();
+  // } else {
+  //   alert("Application withdrawn!!!");
+  // }
 }
 function cancelCheckout() {
   alert("Checkout Canceled!!!");

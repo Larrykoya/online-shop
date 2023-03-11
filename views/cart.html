@@ -27,23 +27,20 @@
       <li class="nav"><a href="cart">CART</a></li>
       <li class="nav"><a href="contact">CONTACT</a></li>
     </ul>
-    <h2 class="headers" style="margin-left: 15px">Online Shopping Cart</h2>
+    <h2 class="headers" style="margin-left: 15px">Shopping Cart</h2>
     <section id="cart">
-        <div id="itemsCart">
-
-        </div><hr>
-            <span style="color: #e63946;" class="data">Total</span>
-            <span style="color: #e63946;" class="data" id="total"></span>
-          </div>
-          <div>
-            <div style="color: #e63946;" id="delivery"></div>
-          </div>
-        </table>
+      <div id="itemsCart">Shopping Cart is Empty...</div>
+      <hr />
+      <div>
+        <span style="color: #e63946" class="data" id="total"></span>
+      </div>
+      <div>
+        <div style="color: #e63946" id="delivery"></div>
       </div>
     </section>
-    <p>Choose payment method:</p>
+    <p>Proceed To Payment:</p>
     <form action="" onsubmit="checkOut()">
-      <input type="radio" id="visa" name="card" value="VISA" required />
+      <!-- <input type="radio" id="visa" name="card" value="VISA" required />
       <label for="visa">Visa</label>
       <input
         type="radio"
@@ -90,7 +87,7 @@
         placeholder="CVV"
         size="3"
         required
-      /><br /><br />
+      /><br /><br /> -->
       <button>Check Out</button>
     </form>
     <button onclick="cancelCheckout()">Empty Cart</button><br />

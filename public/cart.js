@@ -22,7 +22,7 @@ onload = (event) => {
   let total = cart.reduce((accumulator, object) => {
     return accumulator + object.quantity * object.price;
   }, 0);
-  totalContainer.innerHTML = `$${total}`;
+  totalContainer.innerHTML = `Total: $${total}`;
   if (total < 1000) {
     deliveryFee.innerHTML = `Delivery fee: $${total * 0.1}`;
   } else {

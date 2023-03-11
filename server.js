@@ -5,7 +5,7 @@ const items = require("./routes/items");
 const cart = require("./routes/cart");
 const contact = require("./routes/contact");
 const PORT = process.env.PORT || 8080;
-require("dotenv").config;
+//require("dotenv").config;
 server.use(express.static("public"));
 
 server.use("/", home);
