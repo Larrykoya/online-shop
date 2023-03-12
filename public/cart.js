@@ -29,20 +29,22 @@ onload = (event) => {
 };
 
 function checkOut() {
-  fetch("http://localhost:8080/stripe/create-checkout-session", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(cart),
-  })
-    .then((response) => {
-      return response.json();
+  if (cart) {
+    fetch("http://localhost:8080/api/stripe/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cart),
     })
-    .then((data) => {
-      window.location.href = data.url;
-    })
-    .catch((err) => console.log(err));
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        window.location.href = data.url;
+      })
+      .catch((err) => console.log(err));
+  } else alert("Fisrt add items to cart");
 }
 function cancelCheckout() {
   if (cart) {

@@ -8,7 +8,6 @@ const contact = require("./routes/contact");
 const stripe = require("./routes/stripe");
 const success = require("./routes/success");
 const PORT = process.env.PORT || 8080;
-//require("dotenv").config;
 server.use(express.static("public"));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -18,7 +17,7 @@ server.use("/", home);
 server.use("/items", items);
 server.use("/cart", cart);
 server.use("/contact", contact);
-server.use("/stripe", stripe);
+server.use("/api/stripe", stripe);
 server.use("/success", success);
 
 server.listen(PORT, () => {
