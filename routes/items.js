@@ -2,6 +2,7 @@
 const express = require("express");
 const Router = express.Router();
 const path = require("path");
+const mongoose = require("mongoose");
 
 Router.route("/").get((req, res) => {
   res.sendFile(path.join(__dirname, "../views/items.html"));
