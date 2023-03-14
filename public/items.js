@@ -135,19 +135,19 @@ const products = [
   },
 ];
 
-const url = fetch(url, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    window.location.href = data.url;
-  })
-  .catch((err) => console.log(err));
+// const url = fetch(url, {
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// })
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     window.location.href = data.url;
+//   })
+//   .catch((err) => console.log(err));
 
 onload = (event) => {
   let productToDisplay = products.map((product) => {
