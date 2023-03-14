@@ -21,11 +21,11 @@ onload = (event) => {
     return accumulator + object.quantity * object.price;
   }, 0);
   totalContainer.innerHTML = `Total: $${total}`;
-  if (total < 1000) {
-    deliveryFee.innerHTML = `Delivery fee: $${total * 0.1}`;
-  } else {
-    deliveryFee.innerHTML = `Delivery is free.`;
-  }
+  // if (total < 1000) {
+  //   deliveryFee.innerHTML = `Delivery fee: $${total * 0.1}`;
+  // } else {
+  //   deliveryFee.innerHTML = `Delivery is free.`;
+  // }
 };
 
 function checkOut() {

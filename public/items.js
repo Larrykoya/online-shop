@@ -135,25 +135,19 @@ const products = [
   },
 ];
 
-let cart = [];
-function addToCart(event) {
-  alert("added to cart");
-  let id = Number(event.target.id);
-  let index = products.findIndex((product) => product.id === id);
-  if (index > -1) {
-    let product = products[index];
-    products[index] = product;
-    let duplicate = cart.some((cartItem) => cartItem.id === id);
-    if (duplicate) {
-      product.quantity += 1;
-    } else {
-      product.quantity += 1;
-      cart.push(product);
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-}
+const url = fetch(url, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    window.location.href = data.url;
+  })
+  .catch((err) => console.log(err));
 
 onload = (event) => {
   let productToDisplay = products.map((product) => {
@@ -178,3 +172,23 @@ onload = (event) => {
 
   productContainer.innerHTML = productToDisplay.join("");
 };
+
+let cart = [];
+function addToCart(event) {
+  alert("added to cart");
+  let id = Number(event.target.id);
+  let index = products.findIndex((product) => product.id === id);
+  if (index > -1) {
+    let product = products[index];
+    products[index] = product;
+    let duplicate = cart.some((cartItem) => cartItem.id === id);
+    if (duplicate) {
+      product.quantity += 1;
+    } else {
+      product.quantity += 1;
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+}
