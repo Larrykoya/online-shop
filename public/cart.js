@@ -30,7 +30,7 @@ onload = (event) => {
 
 function checkOut() {
   if (cart) {
-    fetch("http://localhost:8080/api/stripe/create-checkout-session", {
+    fetch("/api/stripe/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

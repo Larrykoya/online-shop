@@ -28,7 +28,12 @@
     <h2 class="headers" style="padding-top: 15px; color: #1d3557">
       Add New Product:
     </h2>
-    <form enctype="multipart/form-data" id="form" action="/items" method="post">
+    <form
+      enctype="multipart/form-data"
+      id="form"
+      action="/api/items"
+      method="post"
+    >
       <div class="new-product-form">
         <label for="name">
           <span style="color: red">*</span> Enter product name:</label
@@ -57,7 +62,13 @@
         <label for="image"
           ><span style="color: red">*</span>Upload Image:</label
         >
-        <input type="file" name="productImage" id="image" required />
+        <input
+          type="file"
+          accept="image/*"
+          name="productImage"
+          id="image"
+          required
+        />
       </div>
       <div class="new-product-form">
         <label for="alt">Enter Image-description:</label>
@@ -65,5 +76,11 @@
       </div>
       <button onclick="handleSubmit()" id="submit-button">SUBMIT</button>
     </form>
+    <script>
+      let submitBtn = document.getElementById("submit-button");
+      const handleSubmit = () => {
+        submitBtn.innerHTML = "Adding...";
+      };
+    </script>
   </body>
 </html>

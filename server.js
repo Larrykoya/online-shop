@@ -7,7 +7,7 @@ const home = require("./routes/index");
 const items = require("./routes/items");
 const cart = require("./routes/cart");
 const contact = require("./routes/contact");
-const stripe = require("./routes/stripe");
+const api = require("./routes/api");
 const success = require("./routes/success");
 const PORT = process.env.PORT;
 
@@ -22,10 +22,10 @@ server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 
 server.use("/", home);
-server.use("/items", items);
+server.use("/api", api);
 server.use("/cart", cart);
+server.use("/items", items);
 server.use("/contact", contact);
-server.use("/api/stripe", stripe);
 server.use("/success", success);
 
 server.listen(PORT, () => {
