@@ -181,7 +181,6 @@ onload = (event) => {
 
 let cart = [];
 function addToCart(event) {
-  //alert("added to cart");
   let id = event.target.id;
   const addToCartBtn = document.getElementById(id);
   addToCartBtn.style.backgroundColor = "#e63946";
