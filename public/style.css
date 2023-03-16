@@ -5,6 +5,10 @@
   font-style: oblique;
   font-family: monospace;
   text-align: center;
+  margin: 0;
+}
+body {
+  margin-bottom: 10px;
 }
 ul {
   list-style: none;
@@ -15,6 +19,9 @@ ul {
 li {
   border: 1px solid black;
   width: 70px;
+}
+li a:hover {
+  color: #1d3557;
 }
 .headers {
   font-size: xx-large;
@@ -28,6 +35,9 @@ button {
   border: 1px solid #1d3557;
   border-radius: 5px;
   cursor: pointer;
+}
+button:hover {
+  border: 3px solid #e63946;
 }
 .product-display {
   display: inline-flex;
