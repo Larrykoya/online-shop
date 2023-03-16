@@ -181,8 +181,13 @@ onload = (event) => {
 
 let cart = [];
 function addToCart(event) {
-  alert("added to cart");
+  //alert("added to cart");
   let id = event.target.id;
+  const addToCartBtn = document.getElementById(id);
+  addToCartBtn.style.backgroundColor = "#e63946";
+  setTimeout(() => {
+    addToCartBtn.style.backgroundColor = "#457b9d";
+  }, 300);
   let index = products.findIndex((product) => product._id === id);
   if (index > -1) {
     let product = products[index];
