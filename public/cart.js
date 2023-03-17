@@ -2,6 +2,7 @@ let cartContainer = document.getElementById("itemsCart");
 let cart = JSON.parse(localStorage.getItem("cart"));
 let totalContainer = document.getElementById("total");
 let deliveryFee = document.getElementById("delivery");
+let checkoutOptions = document.getElementById("checkout-options");
 onload = (event) => {
   let cartItems = cart.map((cartItem) => {
     let subtotal = cartItem.quantity * cartItem.price;
@@ -27,7 +28,12 @@ onload = (event) => {
   //   deliveryFee.innerHTML = `Delivery is free.`;
   // }
 };
-
+if (cart) {
+  checkoutOptions.innerHTML = `
+  <p>Proceed To Payment:</p>
+  <button onclick="checkOut()">Check Out</button>
+  <button onclick="cancelCheckout()">Empty Cart</button>`;
+}
 function checkOut() {
   if (cart) {
     fetch("/api/stripe/create-checkout-session", {
