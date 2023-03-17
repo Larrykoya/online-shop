@@ -37,7 +37,8 @@ Router.post("/items", upload.single("productImage"), async (req, res) => {
       image: image.url,
       alt,
     });
-    res.redirect(303, "/items");
+    res.redirect(303, "/items/admin");
+    //res.status(200).json({ newProduct });
     fs.unlinkSync(imagePath);
   } catch (err) {
     console.log(err);
@@ -49,6 +50,21 @@ Router.get("/items", async (req, res) => {
   try {
     const products = await Item.find({});
     res.status(200).send(products);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "unable to process request",
+    });
+  }
+});
+
+Router.delete("/items", async (req, res) => {
+  try {
+    const { id } = req.body;
+    await Item.findByIdAndDelete(id);
+    res.status(201).json({
+      message: "delete successful",
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json({

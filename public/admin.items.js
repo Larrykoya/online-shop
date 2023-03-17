@@ -3,7 +3,7 @@ let productContainer = document.getElementById("products-section");
 let products = [];
 const url = "/api/items";
 
-onload = (event) => {
+onload = () => {
   fetch(url, {
     method: "GET",
     headers: {
@@ -49,6 +49,7 @@ function deleteItem(event) {
   const selectedItem = document.getElementById(id);
   selectedItem.style.backgroundColor = "#e63946";
   selectedItem.innerHTML = "Deleting...";
+  id = { id };
 
   fetch("/api/items/", {
     method: "DELETE",
@@ -60,6 +61,8 @@ function deleteItem(event) {
     .then((response) => {
       return response.json();
     })
-    .then((data) => {})
+    .then((data) => {
+      window.location.reload();
+    })
     .catch((err) => console.log(err));
 }

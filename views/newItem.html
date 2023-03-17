@@ -79,7 +79,14 @@
     <script>
       let submitBtn = document.getElementById("submit-button");
       const handleSubmit = () => {
-        submitBtn.innerHTML = "Adding...";
+        submitBtn.innerHTML = "Adding...Please wait";
+
+        setInterval(() => {
+          setTimeout(() => {
+            submitBtn.style.backgroundColor = "#e63946";
+          }, 400);
+          submitBtn.style.backgroundColor = "#1d3557";
+        }, 800);
       };
     </script>
   </body>
