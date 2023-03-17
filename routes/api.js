@@ -29,9 +29,6 @@ Router.post("/items", upload.single("productImage"), async (req, res) => {
   try {
     const imagePath = req.file.path;
     const image = await cloudinary.uploader.upload(imagePath);
-    console.log(image);
-    console.log(image.url);
-    console.log(image.public_id);
     const { name, price, description, alt } = req.body;
     const newProduct = await Item.create({
       name,
@@ -64,8 +61,10 @@ Router.get("/items", async (req, res) => {
 
 Router.delete("/items", async (req, res) => {
   try {
-    const { id } = req.body;
-    await Item.findByIdAndDelete(id);
+    const { id, image_id } = req.body.data;
+    let product = await Item.findByIdAndDelete(id);
+    console.log(product);
+    await cloudinary.uploader.destroy(image_id);
     res.status(201).json({
       message: "delete successful",
     });

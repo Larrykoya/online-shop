@@ -25,7 +25,7 @@ onload = () => {
                 alt=${product.alt}
               />
               <p>
-              ${product.name} $${product.price} <button onclick="deleteItem(event)" id=${product._id}>Delete Item</button>
+              ${product.name} $${product.price} <button onclick="deleteItem(event)" itemid=${product.imageId} id=${product._id}>Delete Item</button>
               </p> </span
             ><span class="details"
               ><h3>product details:</h3>
@@ -46,17 +46,18 @@ onload = () => {
 
 function deleteItem(event) {
   let id = event.target.id;
+  let image_id = event.target.itemid;
   const selectedItem = document.getElementById(id);
   selectedItem.style.backgroundColor = "#e63946";
   selectedItem.innerHTML = "Deleting...";
-  id = { id };
+  data = { id, image_id };
 
   fetch("/api/items/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(id),
+    body: JSON.stringify(data),
   })
     .then((response) => {
       return response.json();
