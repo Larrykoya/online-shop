@@ -61,10 +61,10 @@ Router.get("/items", async (req, res) => {
 
 Router.delete("/items", async (req, res) => {
   try {
-    const { id, image_id } = req.body.data;
+    const { id, image_id } = req.body;
+    console.log(req.body);
     let product = await Item.findByIdAndDelete(id);
-    console.log(product);
-    await cloudinary.uploader.destroy(image_id);
+    await cloudinary.uploader.destroy(product.imageId);
     res.status(201).json({
       message: "delete successful",
     });
