@@ -29,12 +29,16 @@ Router.post("/items", upload.single("productImage"), async (req, res) => {
   try {
     const imagePath = req.file.path;
     const image = await cloudinary.uploader.upload(imagePath);
+    console.log(image);
+    console.log(image.url);
+    console.log(image.public_id);
     const { name, price, description, alt } = req.body;
     const newProduct = await Item.create({
       name,
       price,
       description,
       image: image.url,
+      imageId: image.public_id,
       alt,
     });
     res.redirect(303, "/items/admin");

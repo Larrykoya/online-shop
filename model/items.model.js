@@ -10,6 +10,10 @@ const itemSchema = new Schema(
       type: String,
       Required: true,
     },
+    imageId: {
+      type: String,
+      Required: true,
+    },
     price: {
       type: Number,
       Required: true,
