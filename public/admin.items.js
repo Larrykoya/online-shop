@@ -33,7 +33,7 @@ onload = () => {
               </p> </span
             ><span class="details"
               ><h3>product details:</h3>
-              <p>${product.description}</p></span
+              <p>${product.description}.</p></span
             >
           </div>
             `;
