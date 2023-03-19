@@ -25,7 +25,11 @@ onload = () => {
                 alt=${product.alt}
               />
               <p>
-              ${product.name} $${product.price} <button onclick="deleteItem(event)" id=${product._id}>Delete Item</button>
+              ${product.name.toUpperCase()} $${
+          product.price
+        } <button onclick="deleteItem(event)" id=${
+          product._id
+        }>Delete Item</button>
               </p> </span
             ><span class="details"
               ><h3>product details:</h3>

@@ -96,7 +96,6 @@ Router.post("/stripe/create-checkout-session", async (req, res) => {
       success_url: `${process.env.BASE_URL}/success`,
       cancel_url: `${process.env.BASE_URL}/cart`,
     });
-
     res.status(200).json({ url: session.url });
   } catch (err) {
     console.log(err);
