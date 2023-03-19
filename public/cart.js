@@ -12,7 +12,7 @@ onload = (event) => {
     price: $${cartItem.price}<br/>
     quantity: ${cartItem.quantity}<br/>
     subtotal: ${subtotal}<br/><br/>
-    <button disabled >Added To Cart</button><br><br/>
+    <button >Remove Item</button><br><br/>
     
     </span>
           `;

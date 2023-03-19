@@ -168,7 +168,7 @@ onload = (event) => {
               </p> </span
             ><span class="details"
               ><h3>product details:</h3>
-              <p>${product.description}</p></span
+              <p>${product.description}.</p></span
             >
           </div>
             `;
@@ -188,9 +188,11 @@ function addToCart(event) {
   let id = event.target.id;
   const addToCartBtn = document.getElementById(id);
   addToCartBtn.style.backgroundColor = "#e63946";
+  addToCartBtn.innerHTML = "Added";
   setTimeout(() => {
     addToCartBtn.style.backgroundColor = "#457b9d";
-  }, 300);
+    addToCartBtn.innerHTML = "Add to Cart";
+  }, 600);
   let index = products.findIndex((product) => product._id === id);
   if (index > -1) {
     let product = products[index];
