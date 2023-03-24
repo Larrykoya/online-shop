@@ -31,8 +31,8 @@ if (cart) {
   <button onclick="checkOut()">Check Out</button>
   <button onclick="cancelCheckout()">Empty Cart</button>`;
 }
-function removeFromCart() {
-  const id = document.getElementById("id");
+function removeFromCart(event) {
+  const id = event.target.id;
   console.log(id);
 }
 function checkOut() {
