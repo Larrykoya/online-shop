@@ -29,7 +29,7 @@ onload = (event) => {
           product.price
         } <button onclick="addToCart(event)" id=${
           product._id
-        } class="add_to_cart">Add to cart</button>
+        } >Add to cart</button>
               </p> </span
             ><span class="details"
               ><h3>product details:</h3>

@@ -12,7 +12,9 @@ onload = (event) => {
     price: $${cartItem.price}<br/>
     quantity: ${cartItem.quantity}<br/>
     subtotal: ${subtotal}<br/><br/>
-    <button >Remove Item</button><br><br/>
+    <button onclick="removeFromCart(event)" id=${
+      cartItem._id
+    } >Remove Item</button><br><br/>
     
     </span>
           `;
@@ -28,6 +30,10 @@ if (cart) {
   <p>Proceed To Payment:</p>
   <button onclick="checkOut()">Check Out</button>
   <button onclick="cancelCheckout()">Empty Cart</button>`;
+}
+function removeFromCart() {
+  const id = document.getElementById("id");
+  console.log(id);
 }
 function checkOut() {
   if (cart) {

@@ -11,8 +11,8 @@ const api = require("./routes/api");
 const success = require("./routes/success");
 const PORT = process.env.PORT;
 
-const db = () => mongoose.connect(process.env.MONGO_URI);
-//"mongodb://localhost:27017/online-store"
+const db = () => mongoose.connect(process.env.LOCAL_MONGO_DB);
+
 db()
   .then(() => console.log("Database connected"))
   .catch((err) => console.log("Unable to connect to DB", err));
