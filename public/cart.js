@@ -33,6 +33,9 @@ if (cart) {
 }
 function removeFromCart(event) {
   const id = event.target.id;
+  // let index = cart.findIndex((item) => {
+  //   item._id === id;
+  // });
   console.log(id);
 }
 function checkOut() {
