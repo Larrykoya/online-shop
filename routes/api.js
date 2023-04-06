@@ -39,7 +39,6 @@ Router.post("/items", upload.single("productImage"), async (req, res) => {
       alt,
     });
     res.redirect(303, "/items/admin");
-    //res.status(200).json({ newProduct });
     fs.unlinkSync(imagePath);
   } catch (err) {
     console.log(err);
