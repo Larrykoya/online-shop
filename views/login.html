@@ -23,21 +23,31 @@
 
     <h2>Enter Login Details:</h2>
     <form id="form" action="" onsubmit="contactFeedBack()">
-      <label for="email">Enter email: </label>
-      <input type="email" id="email" placeholder="Example@email.com" required />
-      <br />
-      <label for="password">Last Name: </label>
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-        required
-      />
-      <br />
+      <div style="padding: 15px">
+        <label for="email">Enter email: </label>
+        <input
+          style="margin-left: 20px"
+          type="email"
+          id="email"
+          placeholder="Example@email.com"
+          required
+        />
+      </div>
+
+      <div style="padding: 15px">
+        <label for="password">Enter password: </label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+          required
+        />
+      </div>
 
       <button>LOGIN</button>
     </form>
-    <p>Don't have an accout?</p>
-    <a href="#top"><button>Sign-up</button></a>
+    <p>
+      Don't have an accout? <a href="#top"><button>Sign-up</button></a>
+    </p>
   </body>
 </html>

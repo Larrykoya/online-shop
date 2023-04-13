@@ -8,6 +8,8 @@ const items = require("./routes/items");
 const cart = require("./routes/cart");
 const contact = require("./routes/contact");
 const api = require("./routes/api");
+const login = require("./routes/login");
+const admin = require("./routes/admin");
 const success = require("./routes/success");
 const PORT = process.env.PORT;
 
@@ -25,6 +27,8 @@ server.use(cors());
 server.use("/", home);
 server.use("/api", api);
 server.use("/cart", cart);
+server.use("/login", login);
+server.use("/admin", admin);
 server.use("/items", items);
 server.use("/contact", contact);
 server.use("/success", success);
