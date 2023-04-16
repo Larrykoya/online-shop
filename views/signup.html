@@ -21,8 +21,28 @@
       /></a>
     </div>
 
-    <h2>Enter Login Details:</h2>
+    <h2>Enter Sign-up Details:</h2>
     <form id="form" action="" onsubmit="contactFeedBack()">
+      <div style="padding: 15px">
+        <label for="firstname">Enter Firstname: </label>
+        <input
+          style="margin-left: 20px"
+          type="text"
+          id="firstname"
+          placeholder="Firstname"
+          required
+        />
+      </div>
+      <div style="padding: 15px">
+        <label for="lastname">Enter Lastname: </label>
+        <input
+          style="margin-left: 20px"
+          type="text"
+          id="lastname"
+          placeholder="Lastname"
+          required
+        />
+      </div>
       <div style="padding: 15px">
         <label for="email">Enter email: </label>
         <input
@@ -35,7 +55,7 @@
       </div>
 
       <div style="padding: 15px">
-        <label for="password">Enter password: </label>
+        <label for="password">Create password: </label>
         <input
           type="password"
           id="password"
@@ -44,7 +64,17 @@
         />
       </div>
 
-      <button>LOGIN</button>
+      <div style="padding: 15px">
+        <label for="confirm-password">Confirm password: </label>
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirm password"
+          required
+        />
+      </div>
+
+      <button>SIGN UP</button>
     </form>
     <p>
       Don't have an accout? <a href="#top"><button>Sign-up</button></a>
