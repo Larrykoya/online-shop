@@ -54,7 +54,7 @@ function checkOut() {
         window.location.href = data.url;
       })
       .catch((err) => console.log(err));
-  } else alert("Fisrt add items to cart");
+  } else alert("First add items to cart");
 }
 function cancelCheckout() {
   if (cart) {
