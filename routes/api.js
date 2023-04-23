@@ -75,6 +75,8 @@ Router.delete("/items", async (req, res) => {
   }
 });
 
+Router.post("/admins", async (req, res) => {});
+
 Router.post("/stripe/create-checkout-session", async (req, res) => {
   try {
     const line_items = req.body.map((cartItem) => {
