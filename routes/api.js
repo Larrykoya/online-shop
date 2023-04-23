@@ -5,6 +5,7 @@ const fs = require("fs");
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const Item = require("../model/items.model");
+const Admin = require("../model/admins.model");
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
 require("dotenv").config();
