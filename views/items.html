@@ -35,6 +35,17 @@
 
     <a href="/cart"><button>View Cart</button></a>
     <a href="#top"><button>back to top</button></a>
-    <script src="items.js"></script>
+    <script>
+      let submitBtn = document.getElementById("submit-button");
+      const creatingUser = () => {
+        submitBtn.innerHTML = "Creating...Please wait";
+        setInterval(() => {
+          setTimeout(() => {
+            submitBtn.style.backgroundColor = "#1d3557";
+          }, 400);
+          submitBtn.style.backgroundColor = "#e63946";
+        }, 800);
+      };
+    </script>
   </body>
 </html>
