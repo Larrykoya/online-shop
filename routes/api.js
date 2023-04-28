@@ -79,15 +79,21 @@ Router.delete("/items", async (req, res) => {
   }
 });
 
-Router.post("/admins", validateSignup, async (req, res) => {
+Router.post("/admin", validateSignup, async (req, res) => {
   try {
     const admin = await Admin.create(req.body);
     res.status(200).json({
       Message: "Admin created",
       admin,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      Message: "Unable to process request",
+    });
+  }
 });
+//Router.get("/admin", async (req, res)=>)
 
 Router.post("/stripe/create-checkout-session", async (req, res) => {
   try {
