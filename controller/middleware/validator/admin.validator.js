@@ -41,3 +41,5 @@ const validateLogin = (req, res, next) => {
   req.body = value;
   next();
 };
+
+module.exports = { validateSignup, validateLogin };
