@@ -6,6 +6,10 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const Item = require("../model/items.model");
 const Admin = require("../model/admins.model");
+const {
+  validateSignup,
+  validateLogin,
+} = require("../controller/middleware/validator/admin.validator");
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
 require("dotenv").config();
@@ -75,7 +79,15 @@ Router.delete("/items", async (req, res) => {
   }
 });
 
-Router.post("/admins", async (req, res) => {});
+Router.post("/admins", validateSignup, async (req, res) => {
+  try {
+    const admin = await Admin.create(req.body);
+    res.status(200).json({
+      Message: "Admin created",
+      admin,
+    });
+  } catch (error) {}
+});
 
 Router.post("/stripe/create-checkout-session", async (req, res) => {
   try {
