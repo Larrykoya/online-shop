@@ -3,7 +3,7 @@ const passwordRegExp = RegExp(
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
 );
 
-const adminSchema = Joi.object({
+const adminSignupSchema = Joi.object({
   firstName: Joi.string().min(3).max(20).required(),
   lastName: Joi.string().min(3).max(20).required(),
   email: Joi.string.required(),
@@ -14,8 +14,25 @@ const adminSchema = Joi.object({
     )
     .required(),
 });
-const validatorSignup = (req, res, next) => {
-  const { error, value } = adminSchema.validate(req.body);
+
+const adminLoginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+});
+
+const validateSignup = (req, res, next) => {
+  const { error, value } = adminSignupSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({
+      Message: error.details[0].message,
+    });
+  }
+  req.body = value;
+  next();
+};
+
+const validateLogin = (req, res, next) => {
+  const { error, value } = adminLoginSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
       Message: error.details[0].message,
