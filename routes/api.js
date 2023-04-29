@@ -79,8 +79,15 @@ Router.delete("/items", async (req, res) => {
   }
 });
 
-Router.post("/admin", validateSignup, async (req, res) => {
+Router.post("/admin/signup", validateSignup, async (req, res) => {
   try {
+    const emailExist = await Admin.findOne({
+      where: { email: req.body.email },
+    });
+    if (emailExist)
+      return res
+        .status(400)
+        .json({ Message: "Account already exist, please login" });
     const admin = await Admin.create(req.body);
     res.status(200).json({
       Message: "Admin created",
@@ -89,7 +96,28 @@ Router.post("/admin", validateSignup, async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      Message: "Unable to process request",
+      Message: error.message,
+    });
+  }
+});
+Router.post("/admin/login", validateLogin, async (req, res) => {
+  try {
+    const emailExist = await Admin.findOne({
+      where: { email: req.body.email },
+    });
+    if (!emailExist)
+      return res
+        .status(400)
+        .json({ Message: "No account with this email, please signup" });
+    const admin = await Admin.create(req.body);
+    res.status(200).json({
+      Message: "Admin created",
+      admin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      Message: error.message,
     });
   }
 });
