@@ -82,12 +82,14 @@ Router.delete("/items", async (req, res) => {
 Router.post("/admin/signup", validateSignup, async (req, res) => {
   try {
     const emailExist = await Admin.findOne({
-      where: { email: req.body.email },
+      email: req.body.email,
     });
-    if (emailExist)
+    console.log(emailExist);
+    if (emailExist) {
       return res
         .status(400)
         .json({ Message: "Account already exist, please login" });
+    }
     const admin = await Admin.create(req.body);
     res.status(200).json({
       Message: "Admin created",
@@ -103,16 +105,27 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
 Router.post("/admin/login", validateLogin, async (req, res) => {
   try {
     const emailExist = await Admin.findOne({
-      where: { email: req.body.email },
+      email: req.body.email,
     });
     if (!emailExist)
       return res
         .status(400)
         .json({ Message: "No account with this email, please signup" });
-    const admin = await Admin.create(req.body);
+
+    res.status(200).json({});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      Message: error.message,
+    });
+  }
+});
+Router.get("/admin", async (req, res) => {
+  try {
+    const admins = await Admin.find({});
     res.status(200).json({
-      Message: "Admin created",
-      admin,
+      Message: "Fetch successful",
+      admins,
     });
   } catch (error) {
     console.log(error);
@@ -121,7 +134,6 @@ Router.post("/admin/login", validateLogin, async (req, res) => {
     });
   }
 });
-//Router.get("/admin", async (req, res)=>)
 
 Router.post("/stripe/create-checkout-session", async (req, res) => {
   try {
