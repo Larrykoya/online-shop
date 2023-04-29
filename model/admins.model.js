@@ -1,4 +1,12 @@
 const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs");
+
+const hashPassword = (plainPW) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(plainPW, salt);
+  console.log("Hashed pw:", hashPassword);
+  return hashPassword;
+};
 
 adminSchema = new Schema(
   {
