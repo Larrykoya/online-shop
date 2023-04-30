@@ -129,7 +129,7 @@ Router.post("/admin/login", validateLogin, async (req, res) => {
 });
 Router.get("/admin", async (req, res) => {
   try {
-    const admins = await Admin.find({});
+    const admins = await Admin.find();
     res.status(200).json({
       Message: "Fetch successful",
       admins,
@@ -139,6 +139,37 @@ Router.get("/admin", async (req, res) => {
     res.status(500).json({
       Message: error.message,
     });
+  }
+});
+Router.get("/admin/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const admin = await Admin.findById(id);
+    res.status(200).json({
+      Message: "Fetch successful",
+      admin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ Messgae: error.message });
+  }
+});
+Router.delete("/admin/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Admin.findByIdAndDelete(id);
+    return res.status(201).json({ Message: "delete successful" });
+  } catch (error) {
+    res.status(500).json({ Messgae: error.message });
+  }
+});
+Router.put("/admin/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Admin.findByIdAndDelete(id);
+    return res.status(201).json({ Message: "delete successful" });
+  } catch (error) {
+    res.status(500).json({ Messgae: error.message });
   }
 });
 
