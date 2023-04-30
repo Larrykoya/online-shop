@@ -1,12 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
-
-const hashPassword = (plainPW) => {
-  const salt = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hashSync(plainPW, salt);
-  console.log("Hashed pw:", hashPassword);
-  return hashPassword;
-};
+const JWT = require("jsonwebtoken");
 
 adminSchema = new Schema(
   {
@@ -29,5 +23,17 @@ adminSchema = new Schema(
   },
   { timestamps: true }
 );
+adminSchema.methods.hashPassword = (plainPW) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(plainPW, salt);
+  return hashedPassword;
+};
+adminSchema.methods.generateToken = () => {
+  token = JWT.sign(
+    { email: this.email, id: this.id },
+    process.env.JWT_SECRET_KEY
+  );
+  return token;
+};
 const Admin = model("Admin", adminSchema);
 module.exports = Admin;

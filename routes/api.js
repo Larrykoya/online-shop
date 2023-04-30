@@ -84,15 +84,18 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
     const emailExist = await Admin.findOne({
       email: req.body.email,
     });
-    console.log(emailExist);
-    if (emailExist) {
-      return res
-        .status(400)
-        .json({ Message: "Account already exist, please login" });
-    }
-    const admin = await Admin.create(req.body);
+    // if (emailExist) {
+    //   return res
+    //     .status(400)
+    //     .json({ Message: "Account already exist, please login" });
+    // }
+    const admin = new Admin(req.body);
+    admin.password = admin.hashPassword(req.body.password);
+    const token = await admin.generateToken();
+    //await admin.save();
     res.status(200).json({
       Message: "Admin created",
+      token,
       admin,
     });
   } catch (error) {
