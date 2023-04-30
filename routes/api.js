@@ -7,6 +7,13 @@ const multer = require("multer");
 const Item = require("../model/items.model");
 const Admin = require("../model/admins.model");
 const {
+  createItem,
+  fetchAllItems,
+  fetchSingleItem,
+  updateItem,
+  deleteItem,
+} = require("../controller/items.controller");
+const {
   validateSignup,
   validateLogin,
   validateAdminUpdate,
@@ -31,54 +38,33 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-Router.post("/items", upload.single("productImage"), async (req, res) => {
-  try {
-    const imagePath = req.file.path;
-    const image = await cloudinary.uploader.upload(imagePath);
-    const { name, price, description, alt } = req.body;
-    const newProduct = await Item.create({
-      name,
-      price,
-      description,
-      image: image.url,
-      imageId: image.public_id,
-      alt,
-    });
-    res.redirect(303, "/items/admin");
-    fs.unlinkSync(imagePath);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Unable to add product" });
-  }
-});
+Router.post("/items", upload.single("productImage"), createItem);
 
-Router.get("/items", async (req, res) => {
-  try {
-    const products = await Item.find({});
-    res.status(200).send(products);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "unable to process request",
-    });
-  }
-});
+// Router.put("/items", upload.single("productImage"), async (req, res) => {
+//   try {
+//     const imagePath = req.file.path;
+//     const image = await cloudinary.uploader.upload(imagePath);
+//     const { name, price, description, alt } = req.body;
+//     const newProduct = await Item.create({
+//       name,
+//       price,
+//       description,
+//       image: image.url,
+//       imageId: image.public_id,
+//       alt,
+//     });
+//     res.redirect(303, "/items/admin");
+//     fs.unlinkSync(imagePath);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
-Router.delete("/items", async (req, res) => {
-  try {
-    const { id } = req.body;
-    let product = await Item.findByIdAndDelete(id);
-    await cloudinary.uploader.destroy(product.imageId);
-    res.status(201).json({
-      message: "delete successful",
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "unable to process request",
-    });
-  }
-});
+Router.get("/items", fetchAllItems);
+Router.get("/items/:id", fetchSingleItem);
+
+Router.delete("/items", deleteItem);
 
 Router.post("/admin/signup", validateSignup, async (req, res) => {
   try {
@@ -92,7 +78,7 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
     const admin = new Admin(req.body);
     admin.password = admin.hashPassword(req.body.password);
     const token = await admin.generateToken();
-    //await admin.save();
+    await admin.save();
     res.status(200).json({
       Message: "Admin created",
       token,
@@ -116,7 +102,6 @@ Router.post("/admin/login", validateLogin, async (req, res) => {
         .json({ Message: "No account with this email, please signup" });
 
     const correctPassword = admin.checkPassword(req.body.password);
-    console.log(correctPassword);
     if (!correctPassword)
       return res.status(400).json({ Message: "incorrect credentials" });
     const token = admin.generateToken();
@@ -158,7 +143,10 @@ Router.get("/admin/:id", async (req, res) => {
 Router.put("/admin/:id", validateAdminUpdate, async (req, res) => {
   try {
     const { id } = req.params;
-    await Admin.findByIdAndUpdate(id, req.body);
+    const admin = await Admin.findById(id);
+    if (req.body.password)
+      req.body.password = admin.hashPassword(req.body.password);
+    await Admin.updateOne({ _id: id }, req.body);
     res.status(201).json({ Message: "update successful" });
   } catch (error) {
     console.log(error);
