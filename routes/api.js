@@ -9,6 +9,7 @@ const Admin = require("../model/admins.model");
 const {
   validateSignup,
   validateLogin,
+  validateAdminUpdate,
 } = require("../controller/middleware/validator/admin.validator");
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
@@ -154,21 +155,23 @@ Router.get("/admin/:id", async (req, res) => {
     res.status(500).json({ Messgae: error.message });
   }
 });
+Router.put("/admin/:id", validateAdminUpdate, async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Admin.findByIdAndUpdate(id, req.body);
+    res.status(201).json({ Message: "update successful" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ Messgae: error.message });
+  }
+});
 Router.delete("/admin/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await Admin.findByIdAndDelete(id);
     return res.status(201).json({ Message: "delete successful" });
   } catch (error) {
-    res.status(500).json({ Messgae: error.message });
-  }
-});
-Router.put("/admin/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Admin.findByIdAndDelete(id);
-    return res.status(201).json({ Message: "delete successful" });
-  } catch (error) {
+    console.log(error);
     res.status(500).json({ Messgae: error.message });
   }
 });
