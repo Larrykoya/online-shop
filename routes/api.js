@@ -84,11 +84,10 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
     const emailExist = await Admin.findOne({
       email: req.body.email,
     });
-    // if (emailExist) {
-    //   return res
-    //     .status(400)
-    //     .json({ Message: "Account already exist, please login" });
-    // }
+    if (emailExist)
+      return res
+        .status(400)
+        .json({ Message: "Account already exist, please login" });
     const admin = new Admin(req.body);
     admin.password = admin.hashPassword(req.body.password);
     const token = await admin.generateToken();
@@ -107,15 +106,20 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
 });
 Router.post("/admin/login", validateLogin, async (req, res) => {
   try {
-    const emailExist = await Admin.findOne({
+    const admin = await Admin.findOne({
       email: req.body.email,
     });
-    if (!emailExist)
+    if (!admin)
       return res
         .status(400)
         .json({ Message: "No account with this email, please signup" });
 
-    res.status(200).json({});
+    const correctPassword = admin.checkPassword(req.body.password);
+    console.log(correctPassword);
+    if (!correctPassword)
+      return res.status(400).json({ Message: "incorrect credentials" });
+    const token = admin.generateToken();
+    res.status(200).json({ messsage: "welcome", token });
   } catch (error) {
     console.log(error);
     res.status(500).json({
