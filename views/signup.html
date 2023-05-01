@@ -29,13 +29,19 @@
     </ul>
 
     <h2>Enter Sign-up Details:</h2>
-    <form id="form" action="" onsubmit="contactFeedBack()">
+    <form
+      enctype="application/x-www-form-urlencoded"
+      id="form"
+      action="/api/admin/signup"
+      method="post"
+    >
       <div style="padding: 15px">
         <label for="firstname">Enter Firstname: </label>
         <input
           style="margin-left: 20px"
           type="text"
           id="firstname"
+          name="firstName"
           placeholder="Firstname"
           required
         />
@@ -46,6 +52,7 @@
           style="margin-left: 20px"
           type="text"
           id="lastname"
+          name="lastName"
           placeholder="Lastname"
           required
         />
@@ -56,6 +63,7 @@
           style="margin-left: 45px"
           type="email"
           id="email"
+          name="email"
           placeholder="Example@email.com"
           required
         />
@@ -66,6 +74,7 @@
         <input
           type="password"
           id="password"
+          name="password"
           placeholder="Enter password"
           required
         />
@@ -76,6 +85,7 @@
         <input
           type="password"
           id="confirm-password"
+          name="confirmPassword"
           placeholder="Confirm password"
           required
         />

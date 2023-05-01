@@ -14,7 +14,7 @@ const {
   validateSignup,
   validateLogin,
   validateAdminUpdate,
-} = require("../controller/middleware/validator/admin.validator");
+} = require("../controller/middleware/validator/auth.validator");
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
 require("dotenv").config();
@@ -66,14 +66,21 @@ Router.post("/admin/signup", validateSignup, async (req, res) => {
       return res
         .status(400)
         .json({ Message: "Account already exist, please login" });
-    const admin = new Admin(req.body);
-    admin.password = admin.hashPassword(req.body.password);
-    const token = await admin.generateToken();
-    await admin.save();
-    res.status(200).json({
-      Message: "Admin created",
-      token,
-      admin,
+    if (req.body.password === req.body.confirmPassword) {
+      delete req.body.confirmPassword;
+      const admin = new Admin(req.body);
+      admin.password = admin.hashPassword(req.body.password);
+      await admin.save();
+      const token = await admin.generateToken();
+      req.session.token = token;
+      return res.status(200).json({
+        Message: "Admin created",
+        token,
+        admin,
+      });
+    }
+    res.status(400).json({
+      Message: "password must match comfirmPassword",
     });
   } catch (error) {
     console.log(error);
@@ -156,7 +163,7 @@ Router.delete("/admin/:id", async (req, res) => {
   }
 });
 Router.post("/logout", (req, res) => {
-  console.log("logged out");
+  console.log("user logged out");
   req.session.destroy();
   res.status(201).json({ Message: "logout success" });
 });

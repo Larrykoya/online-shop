@@ -48,15 +48,18 @@ onload = () => {
     });
 };
 function logout() {
-  fetch("/api/logout", {
-    method: "POST",
-  })
-    .then((response) => {
-      window.location.reload();
+  const confirmation = confirm("Are you sure you want to Log-out?");
+  if (confirmation) {
+    fetch("/api/logout", {
+      method: "POST",
     })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((response) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 function deleteItem(event) {
