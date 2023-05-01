@@ -41,26 +41,12 @@ const upload = multer({ storage });
 
 Router.post("/items", upload.single("productImage"), createItem);
 
-Router.put("/items", upload.single("productImage"), async (req, res) => {
-  try {
-    if (req.file.path) {
-      const image = await cloudinary.uploader.upload(req.file.path);
-      req.body.image = image.url;
-      req.body.imageId = image.public_id;
-    }
-    await Item.create(req.body);
-    res.redirect(303, "/items");
-    fs.unlinkSync(req.file.path);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: err.message });
-  }
-});
+Router.put("/items/:id", upload.single("productImage"), updateItem);
 
 Router.get("/items", fetchAllItems);
 Router.get("/items/:id", fetchSingleItem);
 
-Router.delete("/items", deleteItem);
+Router.delete("/items/:id", deleteItem);
 
 Router.post("/admin/signup", validateSignup, adminSignupController);
 Router.post("/admin/login", validateLogin, adminLoginController);

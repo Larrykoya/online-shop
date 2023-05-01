@@ -20,41 +20,59 @@
       /></a>
     </div>
 
-    <h2 class="headers" style="padding-top: 15px; color: #1d3557">
+    <div id="updateForm"></div>
+    <a href="/items"><button>Back</button></a>
+    <script>
+      onload = () => {
+        let item = undefined;
+        const updateDiv = document.getElementById("updateForm");
+        let id = window.location.pathname.split("/")[2];
+
+        fetch(`/api/items/${id}`, {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            item = data;
+            updateDiv.innerHTML = `<h2 class="headers" style="padding-top: 15px; color: #1d3557">
       Update Product:
     </h2>
-    <form
+        <form
       enctype="multipart/form-data"
       id="form"
-      action="/api/items"
-      method="post"
-    >
-      <div class="new-product-form">
+      action="/api/items/${id}"
+      method="PUT"
+    ><div class="new-product-form">
         <label for="name"> Product name:</label>
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" value=${item.name} />
       </div>
       <div class="new-product-form">
         <label for="price">Product price: </label>
-        <input type="number" id="price" name="price" />
+        <input type="number" id="price" name="price" value=${item.price} />
       </div>
       <div class="new-product-form">
         <label for="description">Product description:</label>
-        <textarea
-          name="description"
-          id="description"
-          cols="42"
-          rows="4"
-        ></textarea>
+        <textarea name="description" id="description" cols="42" rows="4">
+        ${item.description}</textarea
+        >
       </div>
       <div class="">
         <label for="image">Update Image:</label>
         <input type="file" accept="image/*" name="productImage" id="image" />
       </div>
-      <button onclick="handleSubmit()" id="submit-button">SUBMIT</button>
-    </form>
-    <a href="/items"><button>Back</button></a>
-    <script>
-      let submitBtn = document.getElementById("submit-button");
+      <button onclick="handleSubmit()" id="submit-button">UPDATE</button>
+    </form>`;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      const submitBtn = document.getElementById("submit-button");
       const handleSubmit = () => {
         submitBtn.innerHTML = "Updating Product...";
         setInterval(() => {

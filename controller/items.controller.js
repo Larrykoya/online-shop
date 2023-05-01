@@ -44,10 +44,24 @@ fetchSingleItem = async (req, res) => {
     });
   }
 };
-updateItem = (req, res) => {};
+updateItem = async (req, res) => {
+  try {
+    if (req.file.path) {
+      const image = await cloudinary.uploader.upload(req.file.path);
+      req.body.image = image.url;
+      req.body.imageId = image.public_id;
+    }
+    await Item.create(req.body);
+    res.redirect(303, "/items");
+    fs.unlinkSync(req.file.path);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+};
 deleteItem = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     let product = await Item.findByIdAndDelete(id);
     await cloudinary.uploader.destroy(product.imageId);
     res.status(201).json({

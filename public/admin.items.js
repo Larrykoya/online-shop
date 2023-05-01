@@ -27,10 +27,10 @@ onload = () => {
               <p>
               ${product.name.toUpperCase()} $${
           product.price
-        } <br/> <button onclick="deleteItem(event)" id=${
+        } <br/> <button onclick="updateItem(event)" id=${
           product._id
         }>Update Item</button>
-        <button onclick="updateItem(event)" class="red-background" id=${
+        <button onclick="deleteItem(event)" class="red-background" id=${
           product._id
         }>Delete Item</button>
               </p> </span
@@ -66,7 +66,7 @@ function logout() {
 }
 function updateItem(event) {
   let id = event.target.id;
-  location.href = "/items/id";
+  location.href = `/items/${id}`;
 }
 
 function deleteItem(event) {
@@ -76,7 +76,7 @@ function deleteItem(event) {
   selectedItem.innerHTML = "Deleting...";
   data = { id };
 
-  fetch("/api/items", {
+  fetch(`/api/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
