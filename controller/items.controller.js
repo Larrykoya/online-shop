@@ -10,19 +10,12 @@ cloudinary.config({
 
 createItem = async (req, res) => {
   try {
-    const imagePath = req.file.path;
-    const image = await cloudinary.uploader.upload(imagePath);
-    const { name, price, description, alt } = req.body;
-    const newProduct = await Item.create({
-      name,
-      price,
-      description,
-      image: image.url,
-      imageId: image.public_id,
-      alt,
-    });
-    res.redirect(303, "/items/admin");
-    fs.unlinkSync(imagePath);
+    const image = await cloudinary.uploader.upload(req.file.path);
+    req.body.image = image.url;
+    req.body.imageId = image.public_id;
+    const newProduct = await Item.create(req.body);
+    res.redirect(303, "/items");
+    fs.unlinkSync(req.file.path);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Unable to add product" });
