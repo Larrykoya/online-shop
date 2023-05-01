@@ -21,7 +21,7 @@
       /></a>
     </div>
 
-    <ul>
+    <ul id="nav">
       <li class="nav"><a href="/">HOME</a></li>
       <li class="nav"><a href="items">ITEMS</a></li>
       <li class="nav"><a href="cart">CART</a></li>
@@ -29,13 +29,19 @@
     </ul>
 
     <h2>Enter Login Details:</h2>
-    <form id="form" action="" onsubmit="contactFeedBack()">
+    <form
+      enctype="application/x-www-form-urlencoded"
+      id="form"
+      action="/api/admin/login"
+      method="post"
+    >
       <div style="padding: 15px">
         <label for="email">Enter email: </label>
         <input
           style="margin-left: 20px"
           type="email"
           id="email"
+          name="email"
           placeholder="Example@email.com"
           required
         />
@@ -46,6 +52,7 @@
         <input
           type="password"
           id="password"
+          name="password"
           placeholder="Enter password"
           required
         />

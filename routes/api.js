@@ -1,10 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const express = require("express");
 const Router = express.Router();
-const fs = require("fs");
-const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
-const Item = require("../model/items.model");
 const Admin = require("../model/admins.model");
 const {
   createItem,
@@ -21,12 +18,6 @@ const {
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
 require("dotenv").config();
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 const storage = multer.diskStorage({
   destination: "tmp",
@@ -105,7 +96,8 @@ Router.post("/admin/login", validateLogin, async (req, res) => {
     if (!correctPassword)
       return res.status(400).json({ Message: "incorrect credentials" });
     const token = admin.generateToken();
-    res.status(200).json({ messsage: "welcome", token });
+    req.session.token = token;
+    res.redirect(303, "/items");
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -162,6 +154,11 @@ Router.delete("/admin/:id", async (req, res) => {
     console.log(error);
     res.status(500).json({ Messgae: error.message });
   }
+});
+Router.post("/logout", (req, res) => {
+  console.log("logged out");
+  req.session.destroy();
+  res.status(201).json({ Message: "logout success" });
 });
 
 Router.post("/stripe/create-checkout-session", async (req, res) => {

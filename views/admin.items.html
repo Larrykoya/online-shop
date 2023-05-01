@@ -20,23 +20,22 @@
           alt=""
       /></a>
     </div>
-    <ul>
-      <li class="nav"><a href="/">HOME</a></li>
-      <li class="nav"><a href="/items">ITEMS</a></li>
-      <li class="nav"><a href="/cart">CART</a></li>
-      <li class="nav"><a href="/contact">CONTACT</a></li>
-    </ul>
+    <a id="new-item-btn" href="/items/new"><button>New protuct</button></a>
+    <button
+      id="logout-btn"
+      onclick="logout()"
+      style="background-color: #e63946"
+    >
+      Log-out
+    </button>
 
     <h2 class="headers" style="padding-left: 20px">Products</h2>
-    <a href="/items/new"
-      ><button style="margin-left: 20px">New protuct</button></a
-    >
     <section id="products-section">
       <h1>LOADING PRODUCTS, PLEASE WAIT...</h1>
     </section>
 
-    <a href="/items/new"><button>New protuct</button></a>
-    <a href="#top"><button>back to top</button></a>
+    <a href="#top"><button>Back to top</button></a>
+
     <script src="/admin.items.js"></script>
   </body>
 </html>

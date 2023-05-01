@@ -14,7 +14,19 @@ ul {
   list-style: none;
   text-align: center;
   display: flex;
+}
+#nav {
   margin-left: 36.5%;
+}
+#new-item-btn {
+  position: fixed;
+  margin-top: -12%;
+  margin-left: -50%;
+}
+#logout-btn {
+  position: fixed;
+  margin-top: -12%;
+  margin-left: 43.5%;
 }
 li {
   border: 1px solid black;

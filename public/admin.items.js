@@ -47,6 +47,17 @@ onload = () => {
       console.log(err);
     });
 };
+function logout() {
+  fetch("/api/logout", {
+    method: "POST",
+  })
+    .then((response) => {
+      window.location.reload();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 function deleteItem(event) {
   let id = event.target.id;

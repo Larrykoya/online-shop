@@ -1,4 +1,13 @@
-const path = require("path");
+const Item = require("../model/items.model");
+const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 createItem = async (req, res) => {
   try {
     const imagePath = req.file.path;

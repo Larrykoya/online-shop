@@ -21,11 +21,11 @@
       /></a>
     </div>
 
-    <ul>
-      <li class="nav"><a href="/">HOME</a></li>
-      <li class="nav"><a href="items">ITEMS</a></li>
-      <li class="nav"><a href="cart">CART</a></li>
-      <li class="nav"><a href="contact">CONTACT</a></li>
+    <ul id="nav">
+      <li><a href="/">HOME</a></li>
+      <li><a href="items">ITEMS</a></li>
+      <li><a href="cart">CART</a></li>
+      <li><a href="contact">CONTACT</a></li>
     </ul>
 
     <h2>Enter Sign-up Details:</h2>
@@ -81,10 +81,22 @@
         />
       </div>
 
-      <button>SIGN UP</button>
+      <button onclick="creatingUser()">SIGN UP</button>
     </form>
     <p>
       Do you have an accout? <a href="/login"><button>Login</button></a>
     </p>
+    <script>
+      let submitBtn = document.getElementById("submit-button");
+      const creatingUser = () => {
+        submitBtn.innerHTML = "Creating...Please wait";
+        setInterval(() => {
+          setTimeout(() => {
+            submitBtn.style.backgroundColor = "#1d3557";
+          }, 400);
+          submitBtn.style.backgroundColor = "#e63946";
+        }, 800);
+      };
+    </script>
   </body>
 </html>
