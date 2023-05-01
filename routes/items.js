@@ -7,6 +7,11 @@ Router.get("/", (req, res) => {
     return res.sendFile(path.join(__dirname, "../views/admin.items.html"));
   res.sendFile(path.join(__dirname, "../views/items.html"));
 });
+Router.get("/:id", (req, res) => {
+  if (req.session.token)
+    return res.sendFile(path.join(__dirname, "../views/updateItem.html"));
+  res.sendFile(path.join(__dirname, "../views/items.html"));
+});
 Router.get("/new", (req, res) => {
   if (req.session.token) {
     const currentUser = JWT.verify(

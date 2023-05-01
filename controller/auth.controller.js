@@ -49,7 +49,7 @@ const adminLoginController = async (req, res) => {
       return res.status(400).json({ Message: "incorrect credentials" });
     const token = admin.generateToken();
     req.session.token = token;
-    //return res.redirect(303, "/items");
+    return res.redirect(303, "/items");
     res.status(200).json({
       Message: "Login success",
       token,

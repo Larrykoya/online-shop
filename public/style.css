@@ -38,6 +38,9 @@ li a:hover {
 .headers {
   font-size: xx-large;
 }
+.red-background {
+  background-color: #e63946;
+}
 h2 {
   color: #1d3557;
 }

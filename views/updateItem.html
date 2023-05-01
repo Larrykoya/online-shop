@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shop All-Cart</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <img
+      src="../images/grocery-store-displays.jpg"
+      alt=""
+      width="100%"
+      height="150px"
+    />
+    <div id="site_title">
+      <a href="/">
+        <p class="headers">Shop All</p>
+        <img
+          src="../images/external-shopping-cart-supermarket-photo3ideastudio-lineal-photo3ideastudio.png"
+          alt=""
+      /></a>
+    </div>
+
+    <h2 class="headers" style="padding-top: 15px; color: #1d3557">
+      Update Product:
+    </h2>
+    <form
+      enctype="multipart/form-data"
+      id="form"
+      action="/api/items"
+      method="post"
+    >
+      <div class="new-product-form">
+        <label for="name"> Product name:</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <div class="new-product-form">
+        <label for="price">Product price: </label>
+        <input type="number" id="price" name="price" />
+      </div>
+      <div class="new-product-form">
+        <label for="description">Product description:</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="42"
+          rows="4"
+        ></textarea>
+      </div>
+      <div class="">
+        <label for="image">Update Image:</label>
+        <input type="file" accept="image/*" name="productImage" id="image" />
+      </div>
+      <button onclick="handleSubmit()" id="submit-button">SUBMIT</button>
+    </form>
+    <a href="/items"><button>Back</button></a>
+    <script>
+      let submitBtn = document.getElementById("submit-button");
+      const handleSubmit = () => {
+        submitBtn.innerHTML = "Updating Product...";
+        setInterval(() => {
+          setTimeout(() => {
+            submitBtn.style.backgroundColor = "#1d3557";
+          }, 400);
+          submitBtn.style.backgroundColor = "#e63946";
+        }, 800);
+      };
+    </script>
+  </body>
+</html>

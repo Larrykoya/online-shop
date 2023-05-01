@@ -27,7 +27,10 @@ onload = () => {
               <p>
               ${product.name.toUpperCase()} $${
           product.price
-        } <button onclick="deleteItem(event)" id=${
+        } <br/> <button onclick="deleteItem(event)" id=${
+          product._id
+        }>Update Item</button>
+        <button onclick="updateItem(event)" class="red-background" id=${
           product._id
         }>Delete Item</button>
               </p> </span
@@ -60,6 +63,10 @@ function logout() {
         console.log(err);
       });
   }
+}
+function updateItem(event) {
+  let id = event.target.id;
+  location.href = "/items/id";
 }
 
 function deleteItem(event) {
