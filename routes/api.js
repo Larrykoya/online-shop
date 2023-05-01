@@ -2,7 +2,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const express = require("express");
 const Router = express.Router();
 const multer = require("multer");
-const Admin = require("../model/admins.model");
 const {
   createItem,
   fetchAllItems,
@@ -15,6 +14,17 @@ const {
   validateLogin,
   validateAdminUpdate,
 } = require("../controller/middleware/validator/auth.validator");
+const {
+  adminSignupController,
+  adminLoginController,
+  updateAdminController,
+} = require("../controller/auth.controller");
+const {
+  fetchAllAdmin,
+  fetchSingleAdmin,
+  deleteAdmin,
+} = require("../controller/admin.controller");
+
 express().use(express.urlencoded({ extended: true }));
 express().use(express.json());
 require("dotenv").config();
@@ -57,111 +67,12 @@ Router.get("/items/:id", fetchSingleItem);
 
 Router.delete("/items", deleteItem);
 
-Router.post("/admin/signup", validateSignup, async (req, res) => {
-  try {
-    const emailExist = await Admin.findOne({
-      email: req.body.email,
-    });
-    if (emailExist)
-      return res
-        .status(400)
-        .json({ Message: "Account already exist, please login" });
-    if (req.body.password === req.body.confirmPassword) {
-      delete req.body.confirmPassword;
-      const admin = new Admin(req.body);
-      admin.password = admin.hashPassword(req.body.password);
-      await admin.save();
-      const token = await admin.generateToken();
-      req.session.token = token;
-      return res.status(200).json({
-        Message: "Admin created",
-        token,
-        admin,
-      });
-    }
-    res.status(400).json({
-      Message: "password must match comfirmPassword",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      Message: error.message,
-    });
-  }
-});
-Router.post("/admin/login", validateLogin, async (req, res) => {
-  try {
-    const admin = await Admin.findOne({
-      email: req.body.email,
-    });
-    if (!admin)
-      return res
-        .status(400)
-        .json({ Message: "No account with this email, please signup" });
-
-    const correctPassword = admin.checkPassword(req.body.password);
-    if (!correctPassword)
-      return res.status(400).json({ Message: "incorrect credentials" });
-    const token = admin.generateToken();
-    req.session.token = token;
-    res.redirect(303, "/items");
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      Message: error.message,
-    });
-  }
-});
-Router.get("/admin", async (req, res) => {
-  try {
-    const admins = await Admin.find();
-    res.status(200).json({
-      Message: "Fetch successful",
-      admins,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      Message: error.message,
-    });
-  }
-});
-Router.get("/admin/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const admin = await Admin.findById(id);
-    res.status(200).json({
-      Message: "Fetch successful",
-      admin,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ Messgae: error.message });
-  }
-});
-Router.put("/admin/:id", validateAdminUpdate, async (req, res) => {
-  try {
-    const { id } = req.params;
-    const admin = await Admin.findById(id);
-    if (req.body.password)
-      req.body.password = admin.hashPassword(req.body.password);
-    await Admin.updateOne({ _id: id }, req.body);
-    res.status(201).json({ Message: "update successful" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ Messgae: error.message });
-  }
-});
-Router.delete("/admin/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Admin.findByIdAndDelete(id);
-    return res.status(201).json({ Message: "delete successful" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ Messgae: error.message });
-  }
-});
+Router.post("/admin/signup", validateSignup, adminSignupController);
+Router.post("/admin/login", validateLogin, adminLoginController);
+Router.get("/admin", fetchAllAdmin);
+Router.get("/admin/:id", fetchSingleAdmin);
+Router.put("/admin/:id", validateAdminUpdate, updateAdminController);
+Router.delete("/admin/:id", deleteAdmin);
 Router.post("/logout", (req, res) => {
   console.log("user logged out");
   req.session.destroy();
