@@ -46,14 +46,15 @@ fetchSingleItem = async (req, res) => {
 };
 updateItem = async (req, res) => {
   try {
-    if (req.file.path) {
+    if (req.file) {
       const image = await cloudinary.uploader.upload(req.file.path);
       req.body.image = image.url;
       req.body.imageId = image.public_id;
+      fs.unlinkSync(req.file.path);
     }
-    await Item.create(req.body);
+    const { id } = req.params;
+    await Item.findByIdAndUpdate(id, req.body);
     res.redirect(303, "/items");
-    fs.unlinkSync(req.file.path);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });
