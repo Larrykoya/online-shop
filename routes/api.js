@@ -41,7 +41,7 @@ const upload = multer({ storage });
 
 Router.post("/items", upload.single("productImage"), createItem);
 
-Router.put("/items/:id", upload.single("productImage"), updateItem);
+Router.post("/items/:id", upload.single("productImage"), updateItem);
 
 Router.get("/items", fetchAllItems);
 Router.get("/items/:id", fetchSingleItem);
