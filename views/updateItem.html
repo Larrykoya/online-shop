@@ -71,16 +71,17 @@
           .catch((err) => {
             console.log(err);
           });
-      };
-      const submitBtn = document.getElementById("submit-button");
-      const handleSubmit = () => {
-        submitBtn.innerHTML = "Updating Product...";
-        setInterval(() => {
-          setTimeout(() => {
-            submitBtn.style.backgroundColor = "#1d3557";
-          }, 400);
-          submitBtn.style.backgroundColor = "#e63946";
-        }, 800);
+
+        const submitBtn = document.getElementById("submit-button");
+        const handleSubmit = () => {
+          submitBtn.innerHTML = "Updating Product...";
+          setInterval(() => {
+            setTimeout(() => {
+              submitBtn.style.backgroundColor = "#1d3557";
+            }, 400);
+            submitBtn.style.backgroundColor = "#e63946";
+          }, 800);
+        };
       };
     </script>
   </body>

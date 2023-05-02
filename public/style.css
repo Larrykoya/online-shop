@@ -20,12 +20,12 @@ ul {
 }
 #new-item-btn {
   position: fixed;
-  margin-top: -12%;
+  margin-top: 22%;
   margin-left: -50%;
 }
 #logout-btn {
   position: fixed;
-  margin-top: -12%;
+  margin-top: 22.5%;
   margin-left: 43.5%;
 }
 li {
