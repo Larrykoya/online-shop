@@ -30,11 +30,11 @@
     <h2 class="headers" style="padding-left: 10px">Products</h2>
     <a href="/login"><button>Log in as Admin</button></a>
     <div id="single-item">
-      <!-- <h1>LOADING...</h1> -->
+      <h1>LOADING...</h1>
     </div>
 
     <a href="/items"><button>Go Back</button></a>
-    <!-- <script>
+    <script>
       onload = () => {
         let item = undefined;
         const singleItem = document.getElementById("single-item");
@@ -51,46 +51,36 @@
           })
           .then((data) => {
             item = data;
-            const productToDisplay =  `
-            <span class="">
+            const displayItem =
+              `<div id="single-product-section">
+            <span>
               <img
                 class="products"
-                src=${product.image}
-                alt=${product.alt}
+                src=${item.image}
+                alt=${item.alt}
               />
               <p>
-              ${product.name.toUpperCase()} $${
-          product.price
-        } <br/> <button onclick="updateItem(event)" id=${
-          product._id
-        }>Update Item</button>
-        <button onclick="deleteItem(event)" class="red-background" id=${
-          product._id
-        }>Delete Item</button>
-              </p> </span
+              ${item.name.toUpperCase()} <br/> $${item.price}` + //    <br/> <button onclick="updateItem(event)" id=${
+              //       item._id
+              //     }>Update Item</button>
+              // <button onclick="deleteItem(event)" class="red-background" id=${
+              //   item._id
+              // }>Delete Item</button>
+              `</p> </span
             ><span class="details"
-              ><h3>product details:</h3>
-              <p>${product.description}.</p></span
+              ><h3>item details:</h3>
+              <p>${item.description}.</p></span
             >
           </div>
             `;
-            singleItem.innerHTML = null
+            singleItem.innerHTML = displayItem;
           })
           .catch((err) => {
+            singleItem.innerHTML =
+              "SORRY, UNABLE TO LOAD ITEM...TRY AGAIN LATER";
             console.log(err);
           });
-
-        const submitBtn = document.getElementById("submit-button");
-        const handleSubmit = () => {
-          submitBtn.innerHTML = "Updating Product...";
-          setInterval(() => {
-            setTimeout(() => {
-              submitBtn.style.backgroundColor = "#1d3557";
-            }, 400);
-            submitBtn.style.backgroundColor = "#e63946";
-          }, 800);
-        };
       };
-    </script> -->
+    </script>
   </body>
 </html>

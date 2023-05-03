@@ -15,6 +15,10 @@ ul {
   text-align: center;
   display: flex;
 }
+#single-product-section {
+  display: flex;
+  justify-content: center;
+}
 #nav {
   margin-left: 36.5%;
 }
