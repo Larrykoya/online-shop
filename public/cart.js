@@ -8,7 +8,9 @@ onload = (event) => {
     let subtotal = cartItem.quantity * cartItem.price;
 
     return `<span class="singleItem">
-    <b>${cartItem.name.toUpperCase()}</b><br/><br/>
+    <b>${cartItem.name.toUpperCase()}</b><br/>
+    <img src=${cartItem.image}alt=${cartItem.alt}/>
+    <br/>
     price: $${cartItem.price}<br/>
     quantity: ${cartItem.quantity}<br/>
     subtotal: ${subtotal}<br/><br/>
