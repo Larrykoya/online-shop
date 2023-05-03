@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shop All-Items</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="top"></div>
+    <img
+      src="./images/grocery-store-displays.jpg"
+      alt=""
+      width="100%"
+      height="150px"
+    />
+    <div id="site_title">
+      <a href="/">
+        <p class="headers">Shop All</p>
+        <img
+          src="./images/external-shopping-cart-supermarket-photo3ideastudio-lineal-photo3ideastudio.png"
+          alt=""
+      /></a>
+    </div>
+    <ul id="nav">
+      <li><a href="/">HOME</a></li>
+      <li><a href="items">ITEMS</a></li>
+      <li><a href="cart">CART</a></li>
+      <li><a href="contact">CONTACT</a></li>
+    </ul>
+
+    <h2 class="headers" style="padding-left: 10px">Products</h2>
+    <a href="/login"><button>Log in as Admin</button></a>
+    <div id="single-item">
+      <h1>LOADING...</h1>
+    </div>
+
+    <a href="/items"><button>Go Back</button></a>
+    <!-- <script>
+      onload = () => {
+        let item = undefined;
+        const singleItem = document.getElementById("single-item");
+        let id = window.location.pathname.split("/")[2];
+
+        fetch(`/api/items/${id}`, {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            item = data;
+            const productToDisplay =  `
+            <span class="">
+              <img
+                class="products"
+                src=${product.image}
+                alt=${product.alt}
+              />
+              <p>
+              ${product.name.toUpperCase()} $${
+          product.price
+        } <br/> <button onclick="updateItem(event)" id=${
+          product._id
+        }>Update Item</button>
+        <button onclick="deleteItem(event)" class="red-background" id=${
+          product._id
+        }>Delete Item</button>
+              </p> </span
+            ><span class="details"
+              ><h3>product details:</h3>
+              <p>${product.description}.</p></span
+            >
+          </div>
+            `;
+            singleItem.innerHTML = null
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        const submitBtn = document.getElementById("submit-button");
+        const handleSubmit = () => {
+          submitBtn.innerHTML = "Updating Product...";
+          setInterval(() => {
+            setTimeout(() => {
+              submitBtn.style.backgroundColor = "#1d3557";
+            }, 400);
+            submitBtn.style.backgroundColor = "#e63946";
+          }, 800);
+        };
+      };
+    </script> -->
+  </body>
+</html>
