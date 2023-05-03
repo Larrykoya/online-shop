@@ -73,7 +73,7 @@ button:hover {
   font-weight: bold;
   /* padding-left: 20px;*/
 }
-.featured-section {
+#featured-section {
   margin-left: 7%;
   display: flex;
 }

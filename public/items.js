@@ -1,6 +1,7 @@
 let productContainer = document.getElementById("products-section");
-
+let featuredSection = document.getElementById("featured-section");
 let products = [];
+let featuredProducts = [];
 const url = "/api/items";
 
 onload = (event) => {
@@ -78,3 +79,32 @@ function veiwItem(event) {
   let id = event.target.id;
   location.href = `/items/${id}`;
 }
+
+fetch(url, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    featuredProducts = data.splice(0, 4);
+    let productToDisplay = featuredProducts.map((product) => {
+      return `
+      <span class="featured">
+        <img class="products" src=${product.image} alt=${product.alt} />
+        <p>
+          ${product.name.toUpperCase()} $${product.price}
+          <a href="/items/${product._id}"><button>View</button></a>
+        </p>
+      </span>
+          `;
+    });
+    featuredSection.innerHTML = productToDisplay.join("");
+  })
+  .catch((err) => {
+    featuredSection.innerHTML = "SORRY, NO FEATURED PRODUCTS";
+    console.log(err);
+  });
