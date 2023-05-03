@@ -20,7 +20,7 @@ Router.get("/new", (req, res) => {
 Router.get("/:id", (req, res) => {
   if (req.session.token)
     return res.sendFile(path.join(__dirname, "../views/updateItem.html"));
-  res.redirect(303, "/items");
+  res.sendFile(path.join(__dirname, "../views/singleItem.html"));
 });
 
 module.exports = Router;

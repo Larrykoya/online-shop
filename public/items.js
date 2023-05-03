@@ -27,7 +27,9 @@ onload = (event) => {
               <p>
               ${product.name.toUpperCase()} $${
           product.price
-        } <button onclick="addToCart(event)" id=${
+        } <br/> <button onclick="veiwItem(event)" id=${
+          product._id
+        }>Veiw Item</button> <button onclick="addToCart(event)" id=${
           product._id
         } >Add to cart</button>
               </p> </span
@@ -69,7 +71,10 @@ function addToCart(event) {
       product.quantity += 1;
       cart.push(product);
     }
-
     localStorage.setItem("cart", JSON.stringify(cart));
   }
+}
+function veiwItem(event) {
+  let id = event.target.id;
+  location.href = `/items/${id}`;
 }
