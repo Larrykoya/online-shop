@@ -28,9 +28,9 @@ onload = (event) => {
               <p>
               ${product.name.toUpperCase()} $${
           product.price
-        } <br/> <button onclick="veiwItem(event)" id=${
+        } <br/> <a href="/items/${
           product._id
-        }>Veiw Item</button> <button onclick="addToCart(event)" id=${
+        }"><button>View Item</button></a> <button onclick="addToCart(event)" id=${
           product._id
         } >Add to cart</button>
               </p> </span
@@ -74,10 +74,6 @@ function addToCart(event) {
     }
     localStorage.setItem("cart", JSON.stringify(cart));
   }
-}
-function veiwItem(event) {
-  let id = event.target.id;
-  location.href = `/items/${id}`;
 }
 
 fetch(url, {

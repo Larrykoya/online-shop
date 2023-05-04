@@ -16,7 +16,7 @@ const adminSignupController = async (req, res) => {
       await admin.save();
       const token = await admin.generateToken();
       req.session.token = token;
-      //return res.redirect(303, "/items");
+      return res.redirect(303, "/items");
       return res.status(200).json({
         Message: "Admin created",
         token,

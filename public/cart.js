@@ -8,12 +8,12 @@ onload = (event) => {
     let subtotal = cartItem.quantity * cartItem.price;
 
     return `<span class="singleItem">
-    <b>${cartItem.name.toUpperCase()}</b><br/>
-    <img src=${cartItem.image}alt=${cartItem.alt}/>
+    <b class="item-name">${cartItem.name.toUpperCase()}</b><br/>
+    <img class="cart-image" src="${cartItem.image}" alt="${cartItem.alt}"/>
     <br/>
     price: $${cartItem.price}<br/>
     quantity: ${cartItem.quantity}<br/>
-    subtotal: ${subtotal}<br/><br/>
+    subtotal: ${subtotal}<br/>
     <button onclick="removeFromCart(event)" id=${
       cartItem._id
     } >Remove Item</button><br><br/>
