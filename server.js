@@ -29,7 +29,7 @@ server.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 600000 }, //10mins
+    cookie: { maxAge: 3600000 }, //1hr
   })
 );
 
