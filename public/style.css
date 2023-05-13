@@ -29,7 +29,8 @@ ul {
 }
 #view-cart-btn {
   position: fixed;
-  margin-left: -50%;
+  margin-top: 18%;
+  margin-left: -55%;
 }
 #logout-btn {
   position: fixed;
