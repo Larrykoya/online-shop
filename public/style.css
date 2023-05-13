@@ -27,6 +27,10 @@ ul {
   margin-top: 22%;
   margin-left: -50%;
 }
+#view-cart-btn {
+  position: fixed;
+  margin-left: -50%;
+}
 #logout-btn {
   position: fixed;
   margin-top: 22.5%;
