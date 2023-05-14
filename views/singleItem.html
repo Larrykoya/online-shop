@@ -33,7 +33,7 @@
       <h1>LOADING...</h1>
     </div>
 
-    <a href="/items"><button>Go Back</button></a>
+    <a href="/items"><button>View All</button></a>
     <script>
       onload = () => {
         let item = undefined;
@@ -51,8 +51,7 @@
           })
           .then((data) => {
             item = data;
-            const displayItem =
-              `<div id="single-product-section">
+            const displayItem = `<div id="single-product-section">
             <span>
               <img
                 class="single-product"
@@ -60,13 +59,7 @@
                 alt=${item.alt}
               />
               <p>
-              ${item.name.toUpperCase()} <br/> $${item.price}` + //    <br/> <button onclick="updateItem(event)" id=${
-              //       item._id
-              //     }>Update Item</button>
-              // <button onclick="deleteItem(event)" class="red-background" id=${
-              //   item._id
-              // }>Delete Item</button>
-              `</p> </span
+              ${item.name.toUpperCase()} <br/> $${item.price}</p> </span
             ><span class="single-product-details"
               ><h3>item details:</h3>
               <p>${item.description}.</p></span
