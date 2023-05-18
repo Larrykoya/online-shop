@@ -13,7 +13,7 @@ const login = require("./routes/login");
 const signup = require("./routes/signup");
 const success = require("./routes/success");
 const PORT = process.env.PORT;
-const db = () => mongoose.connect(process.env.MONGO_URI);
+const db = () => mongoose.connect(process.env.LOCAL_MONGO_DB);
 
 db()
   .then(() => console.log("Database connected"))
