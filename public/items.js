@@ -20,11 +20,9 @@ onload = (event) => {
         return `
             <div class="product-display">
             <span class="">
-              <img
-                class="products"
-                src=${product.image}
-                alt=${product.alt}
-              />
+            <a href="/items/${product._id}"><img class="products" src=${
+          product.image
+        } alt=${product.alt} /></a>
               <p>
               ${product.name.toUpperCase()} $${
           product.price
