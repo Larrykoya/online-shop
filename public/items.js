@@ -90,7 +90,9 @@ fetch(url, {
     let productToDisplay = featuredProducts.map((product) => {
       return `
       <span class="featured">
-        <img class="products" src=${product.image} alt=${product.alt} />
+      <a href="/items/${product._id}"><img class="products" src=${
+        product.image
+      } alt=${product.alt} /></a>
         <p>
           ${product.name.toUpperCase()} $${product.price}
           <a href="/items/${product._id}"><button>View</button></a>
