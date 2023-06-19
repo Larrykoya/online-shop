@@ -21,6 +21,7 @@ db()
 
 server.use(express.static("public"));
 server.use(express.json());
+server.set("view engine", "ejs");
 server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 

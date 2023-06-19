@@ -17,11 +17,11 @@ const adminSignupController = async (req, res) => {
       const token = await admin.generateToken();
       req.session.token = token;
       return res.redirect(303, "/items");
-      return res.status(200).json({
-        Message: "Admin created",
-        token,
-        admin,
-      });
+      // return res.status(200).json({
+      //   Message: "Admin created",
+      //   token,
+      //   admin,
+      // });
     }
     res.status(400).json({
       Message: "password must match comfirmPassword",
@@ -50,11 +50,11 @@ const adminLoginController = async (req, res) => {
     const token = admin.generateToken();
     req.session.token = token;
     return res.redirect(303, "/items");
-    res.status(200).json({
-      Message: "Login success",
-      token,
-      admin,
-    });
+    // res.status(200).json({
+    //   Message: "Login success",
+    //   token,
+    //   admin,
+    // });
   } catch (error) {
     console.log(error);
     res.status(500).json({
