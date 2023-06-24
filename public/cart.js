@@ -34,11 +34,22 @@ if (cart) {
   <button onclick="cancelCheckout()">Empty Cart</button>`;
 }
 function removeFromCart(event) {
-  const id = event.target.id;
-  // let index = cart.findIndex((item) => {
-  //   item._id === id;
-  // });
+  let id = event.target.id;
   console.log(id);
+  let i;
+  for (i = 0; i < cart.length; i++) {
+    if (cart[i]._id == id) {
+      break;
+    }
+  }
+  cart.splice(i, 1);
+  if (cart.length > 0) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  } else {
+    localStorage.removeItem("cart");
+    alert("Cart Emptied!!!");
+  }
+  location.reload();
 }
 function checkOut() {
   if (cart) {
