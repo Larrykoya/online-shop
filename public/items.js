@@ -55,17 +55,18 @@ function addToCart(event) {
   const addToCartBtn = document.getElementById(id);
   addToCartBtn.style.backgroundColor = "#e63946";
   addToCartBtn.innerHTML = "Added";
-  setTimeout(() => {
-    addToCartBtn.style.backgroundColor = "#457b9d";
-    addToCartBtn.innerHTML = "Add to Cart";
-  }, 600);
+  // setTimeout(() => {
+  //   addToCartBtn.style.backgroundColor = "#457b9d";
+  //   addToCartBtn.innerHTML = "Add to Cart";
+  // }, 600);
   let index = products.findIndex((product) => product._id === id);
   if (index > -1) {
     let product = products[index];
     products[index] = product;
     let duplicate = cart.some((cartItem) => cartItem._id === id);
     if (duplicate) {
-      product.quantity += 1;
+      addToCartBtn.style.backgroundColor = "#e63946";
+      addToCartBtn.innerHTML = "Added";
     } else {
       product.quantity += 1;
       cart.push(product);
