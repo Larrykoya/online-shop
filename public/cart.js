@@ -3,7 +3,7 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 let totalContainer = document.getElementById("total");
 let deliveryFee = document.getElementById("delivery");
 let checkoutOptions = document.getElementById("checkout-options");
-onload = (event) => {
+function loadCart() {
   let cartItems = cart.map((cartItem) => {
     let subtotal = cartItem.quantity * cartItem.price;
 
@@ -12,7 +12,9 @@ onload = (event) => {
     <img class="cart-image" src="${cartItem.image}" alt="${cartItem.alt}"/>
     <br/>
     price: $${cartItem.price}<br/>
-    quantity: ${cartItem.quantity}<br/>
+    quantity: <input style="width: 33px; border: 0;" min="1" onchange="inputMonitor(event)" value="${
+      cartItem.quantity
+    }" id="${cartItem._id}" type="number"><br/>
     subtotal: ${subtotal}<br/>
     <button onclick="removeFromCart(event)" id=${
       cartItem._id
@@ -26,7 +28,18 @@ onload = (event) => {
     return accumulator + object.quantity * object.price;
   }, 0);
   totalContainer.innerHTML = `Total: $${total}`;
+}
+onload = (event) => {
+  loadCart();
 };
+function inputMonitor(event) {
+  let qty = event.target.value;
+  let id = event.target.id;
+  let i = cart.findIndex((item) => item._id == id);
+  cart[i].quantity = qty;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
 if (cart) {
   checkoutOptions.innerHTML = `
   <p>Proceed To Payment:</p>

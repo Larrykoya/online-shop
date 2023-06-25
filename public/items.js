@@ -49,7 +49,7 @@ onload = (event) => {
     });
 };
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 function addToCart(event) {
   let id = event.target.id;
   const addToCartBtn = document.getElementById(id);
