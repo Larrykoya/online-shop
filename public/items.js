@@ -68,7 +68,7 @@ function addToCart(event) {
       addToCartBtn.style.backgroundColor = "#e63946";
       addToCartBtn.innerHTML = "Added";
     } else {
-      product.quantity += 1;
+      product.quantity = 1;
       cart.push(product);
     }
     localStorage.setItem("cart", JSON.stringify(cart));

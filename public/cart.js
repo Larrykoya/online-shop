@@ -24,8 +24,8 @@ function loadCart() {
           `;
   });
   cartContainer.innerHTML = cartItems.join("");
-  let total = cart.reduce((accumulator, object) => {
-    return accumulator + object.quantity * object.price;
+  let total = cart.reduce((accumulator, item) => {
+    return accumulator + item.quantity * item.price;
   }, 0);
   totalContainer.innerHTML = `Total: $${total}`;
 }
