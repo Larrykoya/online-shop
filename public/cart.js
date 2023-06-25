@@ -32,6 +32,12 @@ function loadCart() {
 onload = (event) => {
   loadCart();
 };
+if (cart) {
+  checkoutOptions.innerHTML = `
+  <p>Proceed To Payment:</p>
+  <button onclick="checkOut()">Check Out</button>
+  <button onclick="cancelCheckout()">Empty Cart</button>`;
+}
 function inputMonitor(event) {
   let qty = event.target.value;
   let id = event.target.id;
@@ -40,15 +46,8 @@ function inputMonitor(event) {
   localStorage.setItem("cart", JSON.stringify(cart));
   loadCart();
 }
-if (cart) {
-  checkoutOptions.innerHTML = `
-  <p>Proceed To Payment:</p>
-  <button onclick="checkOut()">Check Out</button>
-  <button onclick="cancelCheckout()">Empty Cart</button>`;
-}
 function removeFromCart(event) {
   let id = event.target.id;
-  console.log(id);
   let i;
   for (i = 0; i < cart.length; i++) {
     if (cart[i]._id == id) {
