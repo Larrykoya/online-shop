@@ -83,7 +83,7 @@ function checkOut() {
 }
 function cancelCheckout() {
   if (cart) {
-    localStorage.clear();
+    localStorage.removeItem("cart");
     location.reload();
     alert("Cart Emptied!!!");
   }
