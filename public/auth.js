@@ -2,7 +2,7 @@ function logIn(event) {
   event.preventDefault();
   let email = event.target[0].value;
   let password = event.target[1].value;
-  fetch("/api/admin/signup", {
+  fetch("/api/admin/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -2,7 +2,7 @@ const Router = require("express").Router();
 const JWT = require("jsonwebtoken");
 
 Router.get("/", (req, res) => {
-  if (req.session.token) return res.render("admin.items");
+  if (req.session.token) return res.render("admin.items.ejs");
   res.render("items");
 });
 Router.get("/new", (req, res) => {
