@@ -10,14 +10,11 @@ const adminSignupSchema = Joi.object({
   password: Joi.string()
     .pattern(
       passwordRegExp,
-      "Password must be 8-32characters, must contain at least one uppercase, one lowercase, one number and one special character"
+      "Password must be 8-32characters, must contain at least one uppercase and lowercase, one number and one special character"
     )
     .required(),
   confirmPassword: Joi.string()
-    .pattern(
-      passwordRegExp,
-      "at least 8-32characters, one uppercase, one lowercase, one number and one special character"
-    )
+    .pattern(passwordRegExp, "Confirm-Password must match Password")
     .required(),
 });
 
@@ -32,7 +29,7 @@ const updateAdminSchema = Joi.object({
   email: Joi.string(),
   password: Joi.string().pattern(
     passwordRegExp,
-    "at least 8-32characters, one uppercase, one lowercase, one number and one special character"
+    "Password must be 8-32characters, must contain at least one uppercase and lowercase, one number and one special character"
   ),
 });
 
