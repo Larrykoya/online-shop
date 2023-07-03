@@ -46,12 +46,12 @@ const adminLoginController = async (req, res) => {
 
     const correctPassword = admin.checkPassword(req.body.password);
     if (!correctPassword)
-      return res.status(400).json({ Message: "incorrect credentials" });
+      return res.status(400).json({ message: "incorrect credentials" });
     const token = admin.generateToken();
     req.session.token = token;
     return res.redirect(303, "/items");
     // res.status(200).json({
-    //   Message: "Login success",
+    //   message: "Login success",
     //   token,
     //   admin,
     // });

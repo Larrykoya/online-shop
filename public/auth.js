@@ -1,6 +1,6 @@
-let loginError = document.getElementById("login-error-handling");
-let signupError = document.getElementById("signup-error-handling");
-loginError.innerHTML = "";
+let loginError = document.getElementById("login-error-message");
+let signupError = document.getElementById("signup-error-message");
+
 function logIn(event) {
   event.preventDefault();
   let email = event.target[0].value;
@@ -13,12 +13,15 @@ function logIn(event) {
     body: JSON.stringify({ email, password }),
   })
     .then((response) => {
-      return response.json();
+      if (response.redirected) {
+        return (window.location = response.url);
+      } else {
+        return response.json();
+      }
     })
     .then((data) => {
       console.log(data);
       loginError.innerHTML = data.message;
-      // "Incorrect credentials!!!";
     })
     .catch((err) => console.log(err));
 }
