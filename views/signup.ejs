@@ -30,12 +30,7 @@
     </ul>
 
     <h2>Enter Sign-up Details:</h2>
-    <form
-      enctype="application/x-www-form-urlencoded"
-      id="form"
-      action="/api/admin/signup"
-      method="post"
-    >
+    <form id="form" onsubmit="signup(event)">
       <div style="padding: 15px">
         <label for="firstname">Enter Firstname: </label>
         <input
@@ -91,7 +86,7 @@
           required
         />
       </div>
-
+      <h4 style="color: red" id="signup-error-message"></h4>
       <button onclick="creatingUser()">SIGN UP</button>
     </form>
     <p>

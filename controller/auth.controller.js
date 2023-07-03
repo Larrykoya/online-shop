@@ -8,7 +8,7 @@ const adminSignupController = async (req, res) => {
     if (emailExist)
       return res
         .status(400)
-        .json({ Message: "Account already exist, please login" });
+        .json({ message: "Account already exist, please login" });
     if (req.body.password === req.body.confirmPassword) {
       delete req.body.confirmPassword;
       const admin = new Admin(req.body);
@@ -24,12 +24,12 @@ const adminSignupController = async (req, res) => {
       // });
     }
     res.status(400).json({
-      Message: "password must match comfirmPassword",
+      message: "password must match comfirmPassword",
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      Message: error.message,
+      message: error.message,
     });
   }
 };
@@ -42,7 +42,7 @@ const adminLoginController = async (req, res) => {
     if (!admin)
       return res
         .status(400)
-        .json({ Message: "No account with this email, please signup" });
+        .json({ message: "No account with this email, please signup" });
 
     const correctPassword = admin.checkPassword(req.body.password);
     if (!correctPassword)
@@ -58,7 +58,7 @@ const adminLoginController = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      Message: error.message,
+      message: error.message,
     });
   }
 };
@@ -70,10 +70,10 @@ const updateAdminController = async (req, res) => {
     if (req.body.password)
       req.body.password = admin.hashPassword(req.body.password);
     await Admin.updateOne({ _id: id }, req.body);
-    res.status(201).json({ Message: "update successful" });
+    res.status(201).json({ message: "update successful" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ Messgae: error.message });
+    res.status(500).json({ messgae: error.message });
   }
 };
 

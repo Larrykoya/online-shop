@@ -17,7 +17,8 @@ function logIn(event) {
     })
     .then((data) => {
       console.log(data);
-      loginError.innerHTML = "Incorrect credentials!!!";
+      loginError.innerHTML = data.message;
+      // "Incorrect credentials!!!";
     })
     .catch((err) => console.log(err));
 }
@@ -29,7 +30,7 @@ function signup(event) {
   let email = event.target[2].value;
   let password = event.target[3].value;
   let confirmPassword = event.target[4].value;
-  fetch("/api/admin/login", {
+  fetch("/api/admin/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
