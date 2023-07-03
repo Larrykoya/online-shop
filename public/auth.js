@@ -1,3 +1,6 @@
+let loginError = document.getElementById("login-error-handling");
+let signupError = document.getElementById("signup-error-handling");
+
 function logIn(event) {
   event.preventDefault();
   let email = event.target[0].value;
@@ -14,6 +17,7 @@ function logIn(event) {
     })
     .then((data) => {
       console.log(data);
+      loginError.innerHTML = "Incorrect credentials!!!";
       //   window.location.href = data.url;
     })
     .catch((err) => console.log(err));
