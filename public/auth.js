@@ -51,7 +51,7 @@ function signup(event) {
     })
     .then((data) => {
       console.log(data);
-      signupError.innerHTML = data.message;
+      signupError.innerHTML = data.message || data.message;
     })
     .catch((err) => console.log(err));
 }
