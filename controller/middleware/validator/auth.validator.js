@@ -35,7 +35,7 @@ const updateAdminSchema = Joi.object({
 
 const validateAdminUpdate = (req, res, next) => {
   const { error, value } = updateAdminSchema.validate(req.body);
-  if (error) return res.status(400).json({ Message: error.details[0].message });
+  if (error) return res.status(400).json({ message: error.details[0].message });
   req.body = value;
   next();
 };
@@ -44,7 +44,7 @@ const validateSignup = (req, res, next) => {
   const { error, value } = adminSignupSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
-      Message: error.details[0].message,
+      message: error.details[0].message,
     });
   }
   req.body = value;
@@ -55,7 +55,7 @@ const validateLogin = (req, res, next) => {
   const { error, value } = adminLoginSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
-      Message: error.details[0].message,
+      message: error.details[0].message,
     });
   }
   req.body = value;
