@@ -14,7 +14,7 @@ const adminSignupSchema = Joi.object({
     )
     .required(),
   confirmPassword: Joi.string()
-    .pattern(passwordRegExp, "Confirm-Password must match Password")
+    .pattern(passwordRegExp, '"Password" value')
     .required(),
 });
 

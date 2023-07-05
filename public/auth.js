@@ -47,11 +47,15 @@ function signup(event) {
     }),
   })
     .then((response) => {
-      return response.json();
+      if (response.redirected) {
+        return (window.location = response.url);
+      } else {
+        return response.json();
+      }
     })
     .then((data) => {
       console.log(data);
-      signupError.innerHTML = data.message || data.message;
+      signupError.innerHTML = data.message || data.Message;
     })
     .catch((err) => console.log(err));
 }
